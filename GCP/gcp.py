@@ -4,7 +4,7 @@ import cv2
 def splitImages(image_name):
     #split images takes in image filename and outputs five images as tuple    
     original_image = cv2.imread(image_name)
-    
+
     #define refrence points for splitting images
     (h,w) = original_image.shape[:2]
     centerX,centerY = w // 2, (h//2)
@@ -32,5 +32,5 @@ def splitImages(image_name):
 
 (og_pic,top_left,top_right,bottom_left,bottom_right) = splitImages("Volleyball.jpg")
 
-cv2.imshow("og pic", og_pic)
+cv2.imshow("top_left", top_left)
 cv2.waitKey(0)
