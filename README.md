@@ -1,2 +1,2 @@
 # EcoFood
-Mobile Application for checking the carboon footprint of foods
+Mobile Application for checking the carboon footprint, land usage, and water usage of specific foods.
