@@ -2,10 +2,10 @@ import { StyleSheet, Text, SafeAreaView, StatusBar, Image } from "react-native";
 import { Dimensions } from "react-native";
 import {
     useFonts,
-    Quicksand_300Light,
-    Quicksand_400Regular,
-    Quicksand_500Medium,
-    Quicksand_600SemiBold,
+    // Quicksand_300Light,
+    // Quicksand_400Regular,
+    // Quicksand_500Medium,
+    // Quicksand_600SemiBold,
     Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
 
@@ -60,7 +60,7 @@ export default function FirstScreen() {
             </SafeAreaView>
             <SafeAreaView
                 style={{
-                    paddingTop: "5%",
+                    marginTop: Dimensions.get("window").height * 0.05,
                 }}
             >
                 <SafeAreaView style={styles.circle}>
@@ -92,7 +92,7 @@ export default function FirstScreen() {
             </SafeAreaView>
             <SafeAreaView
                 style={{
-                    paddingTop: "5%",
+                    marginTop: Dimensions.get("window").height * 0.05,
                 }}
             >
                 <SafeAreaView style={styles.circle}>
@@ -138,9 +138,6 @@ const styles = StyleSheet.create({
         height: "12%",
         borderBottomLeftRadius: Dimensions.get("window").height * 0.08,
         borderBottomRightRadius: Dimensions.get("window").height * 0.08,
-
-        // borderBottomLeftRadius: "15%",
-        // borderBottomRightRadius: "15%",
     },
     circle: {
         backgroundColor: "#BBBE64",
