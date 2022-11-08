@@ -1,5 +1,5 @@
-import { StyleSheet, Text, SafeAreaView, StatusBar, Image } from "react-native";
-import { Dimensions } from "react-native";
+import { StyleSheet, Text, SafeAreaView, StatusBar, Image,View } from "react-native";
+import { Dimensions, Platform } from "react-native";
 import {
     useFonts,
     // Quicksand_300Light,
@@ -8,6 +8,9 @@ import {
     // Quicksand_600SemiBold,
     Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
+
+
+
 
 export default function FirstScreen() {
     let [fontsLoaded] = useFonts({
@@ -19,16 +22,19 @@ export default function FirstScreen() {
     }
 
     return (
-        <SafeAreaView style={styles.background}>
-            <StatusBar animated={true} backgroundColor="#000000" />
-            <SafeAreaView style={styles.header}>
-                <SafeAreaView
+
+
+        <View style={styles.background}>
+            <SafeAreaView style={{backgroundColor: "black"}}/>
+            <StatusBar backgroundColor="black"/>
+            <View style={styles.header}>
+                <View
                     style={{
                         flex: 1,
                         justifyContent: "center",
                     }}
                 >
-                    <SafeAreaView
+                    <View
                         style={{
                             flexDirection: "row",
                             justifyContent: "center",
@@ -55,15 +61,16 @@ export default function FirstScreen() {
                         >
                             ECOFOOD
                         </Text>
-                    </SafeAreaView>
-                </SafeAreaView>
-            </SafeAreaView>
-            <SafeAreaView
+                    </View>
+                </View>
+            </View>
+
+            <View
                 style={{
                     marginTop: Dimensions.get("window").height * 0.05,
                 }}
             >
-                <SafeAreaView style={styles.circle}>
+                <View style={styles.circle}>
                     <Image
                         source={require("../images/camera.png")}
                         style={{
@@ -74,7 +81,7 @@ export default function FirstScreen() {
                         }}
                         resizeMode="contain"
                     />
-                </SafeAreaView>
+                </View>
                 <Text
                     style={{
                         fontSize: 36,
@@ -89,13 +96,13 @@ export default function FirstScreen() {
                 >
                     Take a photo!
                 </Text>
-            </SafeAreaView>
-            <SafeAreaView
+            </View>
+            <View
                 style={{
                     marginTop: Dimensions.get("window").height * 0.05,
                 }}
             >
-                <SafeAreaView style={styles.circle}>
+                <View style={styles.circle}>
                     <Image
                         source={require("../images/notes.png")}
                         style={{
@@ -106,7 +113,7 @@ export default function FirstScreen() {
                         }}
                         resizeMode="contain"
                     />
-                </SafeAreaView>
+                </View>
                 <Text
                     style={{
                         fontSize: 36,
@@ -121,8 +128,10 @@ export default function FirstScreen() {
                 >
                     Text Entry
                 </Text>
-            </SafeAreaView>
-        </SafeAreaView>
+            </View>
+
+
+        </View>
     );
 }
 
