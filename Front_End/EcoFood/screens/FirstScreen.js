@@ -9,6 +9,7 @@ import {
     Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
 
+
 export default function FirstScreen(props) {
     let [fontsLoaded] = useFonts({
         Quicksand_700Bold,
