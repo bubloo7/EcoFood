@@ -1,4 +1,4 @@
-import { StyleSheet, Text, SafeAreaView, StatusBar, Image,View } from "react-native";
+import { StyleSheet, Text, SafeAreaView, StatusBar, Image, View, TouchableOpacity } from "react-native";
 import { Dimensions, Platform } from "react-native";
 import {
     useFonts,
@@ -9,10 +9,7 @@ import {
     Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
 
-
-
-
-export default function FirstScreen() {
+export default function FirstScreen(props) {
     let [fontsLoaded] = useFonts({
         Quicksand_700Bold,
     });
@@ -22,11 +19,9 @@ export default function FirstScreen() {
     }
 
     return (
-
-
         <View style={styles.background}>
-            <SafeAreaView style={{backgroundColor: "black"}}/>
-            <StatusBar backgroundColor="black"/>
+            <SafeAreaView style={{ backgroundColor: "black" }} />
+            <StatusBar backgroundColor="black" />
             <View style={styles.header}>
                 <View
                     style={{
@@ -70,18 +65,24 @@ export default function FirstScreen() {
                     marginTop: Dimensions.get("window").height * 0.05,
                 }}
             >
-                <View style={styles.circle}>
-                    <Image
-                        source={require("../images/camera.png")}
-                        style={{
-                            // scaleX: (Dimensions.get("window").width * 0.0005),
-                            // scaleY: Dimensions.get("window").width * 0.0005,
-                            width: Dimensions.get("window").width * 0.4,
-                            height: Dimensions.get("window").width * 0.4,
-                        }}
-                        resizeMode="contain"
-                    />
-                </View>
+                <TouchableOpacity
+                    onPress={() => {
+                        props.navigation.navigate("CameraScreen");
+                    }}
+                >
+                    <View style={styles.circle}>
+                        <Image
+                            source={require("../images/camera.png")}
+                            style={{
+                                // scaleX: (Dimensions.get("window").width * 0.0005),
+                                // scaleY: Dimensions.get("window").width * 0.0005,
+                                width: Dimensions.get("window").width * 0.4,
+                                height: Dimensions.get("window").width * 0.4,
+                            }}
+                            resizeMode="contain"
+                        />
+                    </View>
+                </TouchableOpacity>
                 <Text
                     style={{
                         fontSize: 36,
@@ -102,18 +103,25 @@ export default function FirstScreen() {
                     marginTop: Dimensions.get("window").height * 0.05,
                 }}
             >
-                <View style={styles.circle}>
-                    <Image
-                        source={require("../images/notes.png")}
-                        style={{
-                            // scaleX: (Dimensions.get("window").width * 0.0005),
-                            // scaleY: Dimensions.get("window").width * 0.0005,
-                            width: Dimensions.get("window").width * 0.4,
-                            height: Dimensions.get("window").width * 0.4,
-                        }}
-                        resizeMode="contain"
-                    />
-                </View>
+                <TouchableOpacity
+                    onPress={() => {
+                        props.navigation.navigate("EntryScreen");
+                    }}
+                >
+                    <View style={styles.circle}>
+                        <Image
+                            source={require("../images/notes.png")}
+                            style={{
+                                // scaleX: (Dimensions.get("window").width * 0.0005),
+                                // scaleY: Dimensions.get("window").width * 0.0005,
+                                width: Dimensions.get("window").width * 0.4,
+                                height: Dimensions.get("window").width * 0.4,
+                            }}
+                            resizeMode="contain"
+                        />
+                    </View>
+                </TouchableOpacity>
+
                 <Text
                     style={{
                         fontSize: 36,
@@ -129,8 +137,6 @@ export default function FirstScreen() {
                     Text Entry
                 </Text>
             </View>
-
-
         </View>
     );
 }
