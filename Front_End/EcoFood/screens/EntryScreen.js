@@ -1,4 +1,4 @@
-import { StyleSheet, Text, SafeAreaView, StatusBar, Image,View } from "react-native";
+import { StyleSheet, Text, SafeAreaView, StatusBar, Image,View, TextInput, TouchableOpacity } from "react-native";
 import { Dimensions, Platform } from "react-native";
 import {
     useFonts,
@@ -51,7 +51,17 @@ export default function EntryScreen() {
                     </View>
                 </View>
             </View>
+            <View>
+                <TextInput placeholder = "Enter an item..." stlye ={styles.input} />
+                <TouchableOpacity style = {styles.btn}>
+                    <Text style = {styles.btnText}>
+                        Add item
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </View>
+    
+
     );
 }
 
@@ -84,4 +94,20 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+
+    input: {
+        height: 60,
+        padding: 8,
+        margin: 5,
+      },
+      btn: {
+        backgroundColor: '#F96E46',
+        padding: 9,
+        margin: 5,
+      },
+      btnText: {
+        color: '#000',
+        fontSize: 20,
+        textAlign: 'center', 
+      },
 });
