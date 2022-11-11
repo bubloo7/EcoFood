@@ -4,6 +4,8 @@ import FirstScreen from "./screens/FirstScreen";
 import ResultScreen from "./screens/ResultScreen";
 import CameraScreen from "./screens/CameraScreen";
 import EntryScreen from "./screens/EntryScreen";
+import ImageEntryScreen from "./screens/ImageEntryScreen";
+import UploadPhotoScreen from "./screens/UploadPhotoScreen";
 import * as React from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -24,9 +26,11 @@ export default function App() {
                 }}
             >
                 <Stack.Screen name="FirstScreen" component={FirstScreen} />
+                <Stack.Screen name="ImageEntryScreen" component={ImageEntryScreen} />
                 <Stack.Screen name="EntryScreen" component={EntryScreen} />
                 <Stack.Screen name="ResultScreen" component={ResultScreen} />
                 <Stack.Screen name="CameraScreen" component={CameraScreen} />
+                <Stack.Screen name="UploadPhotoScreen" component={UploadPhotoScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

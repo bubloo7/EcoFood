@@ -67,7 +67,7 @@ export default function FirstScreen(props) {
             >
                 <TouchableOpacity
                     onPress={() => {
-                        props.navigation.navigate("ImageEntryScreen");
+                        props.navigation.navigate("CameraScreen");
                     }}
                 >
                     <View style={styles.circle}>
@@ -95,7 +95,7 @@ export default function FirstScreen(props) {
                         fontFamily: "Quicksand_700Bold",
                     }}
                 >
-                    Image Entry
+                    Take a photo!
                 </Text>
             </View>
             <View
@@ -105,7 +105,7 @@ export default function FirstScreen(props) {
             >
                 <TouchableOpacity
                     onPress={() => {
-                        props.navigation.navigate("EntryScreen");
+                        props.navigation.navigate("UploadPhotoScreen");
                     }}
                 >
                     <View style={styles.circle}>
@@ -134,7 +134,7 @@ export default function FirstScreen(props) {
                         fontFamily: "Quicksand_700Bold",
                     }}
                 >
-                    Text Entry
+                    Upload a photo!
                 </Text>
             </View>
         </View>
