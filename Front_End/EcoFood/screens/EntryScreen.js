@@ -1,4 +1,5 @@
-import { StyleSheet, Text, SafeAreaView, StatusBar, Image,View, TextInput, TouchableOpacity } from "react-native";
+import React from "react";
+import { StyleSheet, Text, SafeAreaView, StatusBar, Image,View, TextInput, TouchableOpacity, Button } from "react-native";
 import { Dimensions, Platform } from "react-native";
 import {
     useFonts,
@@ -9,7 +10,19 @@ import {
     Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
 
-export default function EntryScreen() {
+export default function EntryScreen(props) {
+    
+    const[input, setInput] = React.useState([])
+    
+
+    
+    const onSomeInputChange = (text) => {
+        const entry = {
+            entry: text,
+        };
+        this.setState({ entries: [...this.state.entries, entry] });
+    }   
+
     return (
         <View style={styles.background}>
             <SafeAreaView style={{ backgroundColor: "black" }} />
@@ -52,14 +65,15 @@ export default function EntryScreen() {
                 </View>
             </View>
             <View>
-                <TextInput placeholder = "Enter an item..." stlye ={styles.input} />
-                <TouchableOpacity style = {styles.btn}>
-                    <Text style = {styles.btnText}>
-                        Add item
-                    </Text>
-                </TouchableOpacity>
+                <TextInput 
+                placeholder = "Enter a comma separated list of items..." 
+                style ={styles.input}
+                onChangeText = {(text) => setInput(text.split(','))}
+                /*onSubmitEditing = {() => {props.navigation.navigate("ResultScreen", { data: input })}}*/
+                 />
             </View>
         </View>
+    
     
 
     );
@@ -96,9 +110,13 @@ const styles = StyleSheet.create({
     },
 
     input: {
+        borderColor: '#808080',
+        borderWidth: 1,
+        borderHeight: 3,
         height: 60,
         padding: 8,
         margin: 5,
+        justifyContent: "center",
       },
       btn: {
         backgroundColor: '#F96E46',
