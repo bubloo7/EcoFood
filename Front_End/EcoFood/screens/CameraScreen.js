@@ -3,7 +3,7 @@ import { Camera, CameraType } from "expo-camera";
 import { useState, useEffect } from "react";
 import { Dimensions, Platform } from "react-native";
 
-export default function CameraScreen() {
+export default function CameraScreen(props) {
     const [type, setType] = useState(CameraType.back);
     const [cameraRef, setCameraRef] = useState(null);
     const [permission, requestPermission] = Camera.useCameraPermissions();
@@ -47,10 +47,10 @@ export default function CameraScreen() {
                     style={styles.button}
                     onPress={() => {
                         //take photo
-                        cameraRef.takePictureAsync({ base64: false }).then((data) => {
+                        cameraRef.takePictureAsync({ base64: true }).then((data) => {
                             console.log("clicked\n");
-
-                            console.log(data);
+                            console.log(Object.keys(data));
+                            props.navigation.navigate("ResultScreen", { data: data });
                         });
                     }}
                 ></TouchableOpacity>

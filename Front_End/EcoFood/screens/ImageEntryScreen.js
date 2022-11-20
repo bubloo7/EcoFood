@@ -9,7 +9,9 @@ import {
     Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
 
-export default function FirstScreen(props) {
+import * as ImagePicker from "expo-image-picker";
+
+export default function ImageEntryScreen(props) {
     let [fontsLoaded] = useFonts({
         Quicksand_700Bold,
     });
@@ -104,9 +106,28 @@ export default function FirstScreen(props) {
                 }}
             >
                 <TouchableOpacity
-                    onPress={() => {
+                    onPress={
+                        /*    
+                        () => {
                         props.navigation.navigate("UploadPhotoScreen");
-                    }}
+                        }
+                        */
+                        async () => {
+                            // No permissions request is necessary for launching the image library
+                            let result = await ImagePicker.launchImageLibraryAsync({
+                                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                                quality: 1,
+                                allowsEditing: true,
+                                base64: true,
+                            });
+                            console.log("selected");
+                            if (!result.cancelled) {
+                                // setImage(result.uri);
+                                // console.log(result);
+                                props.navigation.navigate("ResultScreen", { data: result });
+                            }
+                        }
+                    }
                 >
                     <View style={styles.circle}>
                         <Image

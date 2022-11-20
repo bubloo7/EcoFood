@@ -1,4 +1,4 @@
-import { StyleSheet, Text, SafeAreaView, StatusBar, Image, View } from "react-native";
+import { StyleSheet, Text, SafeAreaView, StatusBar, Image, View, Button } from "react-native";
 import { Dimensions, Platform } from "react-native";
 import {
     useFonts,
@@ -8,11 +8,30 @@ import {
     // Quicksand_600SemiBold,
     Quicksand_700Bold,
 } from "@expo-google-fonts/quicksand";
+import * as ImagePicker from "expo-image-picker";
+import { useState } from "react";
 
 export default function UploadPhotoScreen() {
+    const [image, setImage] = useState(null);
+
     return (
         <View style={styles.background}>
             <Text>UploadPhotoScreen</Text>
+            <Button
+                title="Pick Image"
+                onPress={async () => {
+                    // No permissions request is necessary for launching the image library
+                    let result = await ImagePicker.launchImageLibraryAsync({
+                        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                        quality: 1,
+                        allowsEditing: true,
+                    });
+                    console.log("selected");
+                    if (!result.cancelled) {
+                        // setImage(result.uri);
+                    }
+                }}
+            />
         </View>
     );
 }
