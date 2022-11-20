@@ -7,7 +7,13 @@ export default function CameraScreen() {
     const [type, setType] = useState(CameraType.back);
     const [cameraRef, setCameraRef] = useState(null);
     const [permission, requestPermission] = Camera.useCameraPermissions();
+    const [ratio, setRatio] = useState("1:2");
 
+    useEffect(() => {
+        if (cameraRef) {
+            // cameraRef.onCameraReady();
+        }
+    }, [cameraRef]);
     if (!permission) {
         // Camera permissions are still loading
         return <View />;
@@ -22,13 +28,18 @@ export default function CameraScreen() {
             </View>
         );
     }
-    6 / 0;
     return (
         <Camera
             style={styles.camera}
             type={type}
+            ratio={ratio}
             ref={(ref) => {
                 setCameraRef(ref);
+            }}
+            onCameraReady={() => {
+                cameraRef.getSupportedRatiosAsync().then((data) => {
+                    setRatio(data[data.length - 1]);
+                });
             }}
         >
             <View style={styles.buttonContainer}>
@@ -36,8 +47,10 @@ export default function CameraScreen() {
                     style={styles.button}
                     onPress={() => {
                         //take photo
-                        cameraRef.takePictureAsync({ base64: true }).then((data) => {
-                            // console.log(data);
+                        cameraRef.takePictureAsync({ base64: false }).then((data) => {
+                            console.log("clicked\n");
+
+                            console.log(data);
                         });
                     }}
                 ></TouchableOpacity>
