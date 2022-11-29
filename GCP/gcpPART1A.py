@@ -16,14 +16,6 @@ def splitImages(image_name):
     bottom_right_image = original_image[centerY:h, centerX:w]
 
     #show images
-    '''
-    cv2.imshow("Top Left Corner", top_left_image)
-    cv2.imshow("Top Right Corner", top_right_image)
-    cv2.imshow("Bottom Left Corner", bottom_left_image)
-    cv2.imshow("Bottom Right Corner", bottom_right_image)
-
-    cv2.imshow("orignal_image", original_image)
-    '''
     
 
 
