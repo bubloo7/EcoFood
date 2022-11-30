@@ -2,7 +2,7 @@ import cv2
 import io
 import os
 from google.cloud import vision
-from google.cloud.vision_v1  import types
+from google.cloud.vision_v1 import types
 import pandas as pd
 import re
 import urllib.request
@@ -30,8 +30,6 @@ def splitImages(image_name):
 
     #show images
     
-
-
     return original_image, top_left_image,top_right_image, bottom_left_image, bottom_right_image
 
 def possible_items_one_image(image_name):
@@ -163,7 +161,11 @@ def create_list_matching_database_with_possible_items(list_of_possible_items):
     return list_of_items_w_values
 
 
-my_image = "potato1.jpg"
-print(image_to_list(my_image))
-output = create_list_matching_database_with_possible_items(image_to_list(my_image))
-print ("\n \n Stats on", my_image,": \n",output)
+# my_image = "potato1.jpg"
+# print(image_to_list(my_image))
+# output = create_list_matching_database_with_possible_items(image_to_list(my_image))
+# print ("\n \n Stats on", my_image,": \n",output)
+items = ["Groundnuts"]
+
+output = create_list_matching_database_with_possible_items(items)
+print (output)
