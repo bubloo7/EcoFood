@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     card: {
         width: "100%",
         marginHorizontal: 4,
-        marginVertical: 6,
+        marginVertical: 10,
         backgroundColor: "#E3F2FD",
         borderWidth: "100%",
         borderColor: "#000000",

@@ -139,7 +139,7 @@ export default function ResultScreen(props) {
             <View style={styles.header}>
                 <View
                     style={{
-                        // flex: 1,
+                        flex: 1,
                         justifyContent: "center",
                     }}
                 >
@@ -166,6 +166,8 @@ export default function ResultScreen(props) {
                                 textAlign: "center",
                                 color: "#544B3d",
                                 fontFamily: "Quicksand_700Bold",
+                                
+                                
                             }}
                         >
                             ECOFOOD

@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
         padding: 8,
         margin: 5,
         justifyContent: "center",
-    },
+      },
     btn: {
         backgroundColor: "#F96E46",
         padding: 9,
