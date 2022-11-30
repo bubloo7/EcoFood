@@ -1,5 +1,6 @@
 import { StyleSheet, Text, SafeAreaView, StatusBar, Image, View } from "react-native";
 import { Dimensions, Platform } from "react-native";
+import ResultsCard from '../components/ResultsCard';
 
 export default function ResultScreen(props) {
     // console.log("resultsScreen", props.route.params.data);
@@ -50,9 +51,13 @@ export default function ResultScreen(props) {
                 </View>
             </View>
             <View>
-
-                
+                <ResultsCard name = {"Chicken"} land = {"5"} co2 = {"10"} water = {"25"}></ResultsCard>
             </View>
+            <View>
+                <ResultsCard name = {"Egg"} land = {"10"} co2 = {"20"} water = {"30"}></ResultsCard>
+            </View>
+            
+            
         </View>
     );
 }
