@@ -5,7 +5,9 @@ export default function ResultsCard(props) {
     return (
         <View>
 
-            <Text></Text>
+            <Text>
+                
+            </Text>
 
         </View>
     )

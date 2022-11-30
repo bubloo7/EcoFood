@@ -1,5 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, SafeAreaView, StatusBar, Image,View, TextInput, TouchableOpacity, Button } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    SafeAreaView,
+    StatusBar,
+    Image,
+    View,
+    TextInput,
+    TouchableOpacity,
+    Button,
+} from "react-native";
 import { Dimensions, Platform } from "react-native";
 import {
     useFonts,
@@ -11,17 +21,14 @@ import {
 } from "@expo-google-fonts/quicksand";
 
 export default function EntryScreen(props) {
-    
-    const[input, setInput] = React.useState([])
-    
+    const [input, setInput] = React.useState([]);
 
-    
     const onSomeInputChange = (text) => {
         const entry = {
             entry: text,
         };
         this.setState({ entries: [...this.state.entries, entry] });
-    }   
+    };
 
     return (
         <View style={styles.background}>
@@ -65,17 +72,20 @@ export default function EntryScreen(props) {
                 </View>
             </View>
             <View>
-                <TextInput 
-                placeholder = "Enter a comma separated list of items..." 
-                style ={styles.input}
-                onChangeText = {(text) => setInput(text.split(','))}
-                /*onSubmitEditing = {() => {props.navigation.navigate("ResultScreen", { data: input })}}*/
-                 />
+                <TextInput
+                    placeholder="Enter a comma separated list of items..."
+                    style={styles.input}
+                    onChangeText={(text) => { 
+                        setInput(text.split(","))
+                        console.log("changing input")
+                    }}
+                    onSubmitEditing={() => {
+                        // props.navigation.navigate("ResultScreen", { data: input })
+                        props.navigation.navigate("ResultScreen", { data2: input });
+                    }}
+                />
             </View>
         </View>
-    
-    
-
     );
 }
 
@@ -110,22 +120,22 @@ const styles = StyleSheet.create({
     },
 
     input: {
-        borderColor: '#808080',
+        borderColor: "#808080",
         borderWidth: 1,
         borderHeight: 3,
         height: 60,
         padding: 8,
         margin: 5,
         justifyContent: "center",
-      },
-      btn: {
-        backgroundColor: '#F96E46',
+    },
+    btn: {
+        backgroundColor: "#F96E46",
         padding: 9,
         margin: 5,
-      },
-      btnText: {
-        color: '#000',
+    },
+    btnText: {
+        color: "#000",
         fontSize: 20,
-        textAlign: 'center', 
-      },
+        textAlign: "center",
+    },
 });
