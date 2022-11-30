@@ -1,4 +1,4 @@
-import { StyleSheet, Text, SafeAreaView, StatusBar, Image, View } from "react-native";
+import { StyleSheet, Text, SafeAreaView, StatusBar, Image, View, ScrollView, FlatList } from "react-native";
 import { Dimensions, Platform } from "react-native";
 import { useState, useEffect } from "react";
 import ResultsCard from "../components/ResultsCard";
@@ -14,14 +14,101 @@ export default function ResultScreen(props) {
     // console.log(props.route.params.data2);
 
     const url = "";
+    const [data, setData] = useState([]);
     const [card, setCards] = useState([]);
-
+    const renderItem = ({ item }) => (
+        <View>
+            <ResultsCard name={item["name"]} land={item["land"]} co2={item["CO2"]} water={item["water"]} />
+        </View>
+    );
     useEffect(() => {
         if (props.route.params.data) {
+            console.log("pre promise");
+            // fetch(url, {
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify({ dataUrl: props.route.params.data.base64 }),
+            // })
+            //     .then((response) => {
+            //         return response.json();
+            //     })
+            new Promise((r) => setTimeout(r, 1000)).then((idk) => {
+                // change idk to dataA
+                const dataA = {
+                    stats: [
+                        {
+                            name: "banana",
+                            land: 3,
+                            CO2: 13,
+                            water: 10,
+                        },
+                        {
+                            name: "apple",
+                            land: 4,
+                            CO2: 14,
+                            water: 11,
+                        },
+                        {
+                            name: "orange",
+                            land: 5,
+                            CO2: 15,
+                            water: 12,
+                        },
+                        {
+                            name: "grape",
+                            land: 6,
+                            CO2: 16,
+                            water: 13,
+                        },
+                        {
+                            name: "pear",
+                            land: 7,
+                            CO2: 17,
+                            water: 14,
+                        },
+                        {
+                            name: "pineapple",
+                            land: 8,
+                            CO2: 18,
+                            water: 15,
+                        },
+                        {
+                            name: "strawberry",
+                            land: 9,
+                            CO2: 19,
+                            water: 16,
+                        },
+                        {
+                            name: "blueberry",
+                            land: 10,
+                            CO2: 20,
+                            water: 17,
+                        },
+                    ],
+                };
+                // console.log(data);
+                var c = [];
+                for (let i = 0; i < dataA["stats"].length; i++) {
+                    c.push(
+                        <View>
+                            <ResultsCard
+                                name={dataA["stats"][i]["name"]}
+                                land={dataA["stats"][i]["land"]}
+                                co2={dataA["stats"][i]["CO2"]}
+                                water={dataA["stats"][i]["water"]}
+                            />
+                        </View>
+                    );
+                }
+                setCards(c);
+                setData(dataA["stats"]);
+                console.log("post promise");
+            });
+        } else {
             fetch(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ dataUrl: props.route.params.data.base64 }),
+                body: JSON.stringify({ dataUrl: props.route.params.data2 }),
             })
                 .then((response) => {
                     return response.json();
@@ -30,20 +117,18 @@ export default function ResultScreen(props) {
                     console.log(data);
                     // setData(data);
                     var c = [];
-                    for (let i = 0; i < data[0].length; i++) {
+                    for (let i = 0; i < data["stats"].length; i++) {
                         c.push(
-                            "test"
-                            // (
-                            //     // <ResultsCard
-                            //     //     key={i}
-                            //     //     name={data[0][i]}
-                            //     //     score={data[1][i]}
-
-                            // )
+                            <ResultsCard
+                                name={dataA["stats"][i]["name"]}
+                                land={dataA["stats"][i]["land"]}
+                                co2={dataA["stats"][i]["CO2"]}
+                                water={dataA["stats"][i]["water"]}
+                            />
                         );
                     }
+                    setCards(c);
                 });
-        } else {
         }
     }, []);
 
@@ -54,7 +139,7 @@ export default function ResultScreen(props) {
             <View style={styles.header}>
                 <View
                     style={{
-                        flex: 1,
+                        // flex: 1,
                         justifyContent: "center",
                     }}
                 >
@@ -88,16 +173,28 @@ export default function ResultScreen(props) {
                     </View>
                 </View>
             </View>
-            <View></View>
+
+            <FlatList data={data} renderItem={renderItem} keyExtractor={(item) => item.name} />
+       
         </View>
     );
+    // return <Temp />;
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        width: "10px",
+        marginTop: StatusBar.currentHeight || 0,
+    },
     background: {
         backgroundColor: "#E3F2FD",
         width: "100%",
         height: "100%",
+    },
+    scrollView: {
+        backgroundColor: "pink",
+        marginHorizontal: 20,
     },
     header: {
         backgroundColor: "#BBBE64",
@@ -117,7 +214,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     container: {
-        flex: 1,
+        // flex: 1,
         backgroundColor: "#E3F2FD",
         alignItems: "center",
         justifyContent: "center",

@@ -6,11 +6,11 @@ export default function ResultsCard(props) {
         <View styles={styles.card}>
             <Text style={styles.title}>{props.name}</Text>
             <Text style={styles.labelTitle}>land use</Text>
-            <Text style={styles.content}>{props.land + " m^2 of forest"}</Text>
+            <Text style={styles.content}>{props.land + " m^2 of forest per kg of"}</Text>
             <Text style={styles.labelTitle}>carbon emission</Text>
-            <Text style={styles.content}>{props.co2 + " kilograms of CO2"}</Text>
+            <Text style={styles.content}>{props.co2 + " kilograms of CO2 per kg"}</Text>
             <Text style={styles.labelTitle}>water use</Text>
-            <Text style={styles.content}>{props.water + " liters"}</Text>
+            <Text style={styles.content}>{props.water + " liters per kg"}</Text>
         </View>
     );
 }
@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: "bold",
         marginVertical: 10,
+        marginHorizontal: 20,
     },
     labelTitle: {
         backgroundColor: "#E3F2FD",
         width: "100%",
-        height: "12%",
         fontWeight: "bold",
         /*align the text to the left*/
         textAlign: "right",
@@ -42,12 +42,19 @@ const styles = StyleSheet.create({
     },
     content: {
         backgroundColor: "#E3F2FD",
-        width: "100%",
-        height: "12%",
+        // width: "100%",
+        // height: "12%",
         /*align the text to the left*/
         textAlign: "right",
         /*set a margin on right side of screen*/
-        marginHorizontal: -20,
-        marginVertical: -10,
+        marginHorizontal: 20,
+        // marginVertical: -10,
     },
 });
+
+// const styles = StyleSheet.create({
+//     card: {},
+//     title: {},
+//     labelTitle: {},
+//     content: {},
+// });
