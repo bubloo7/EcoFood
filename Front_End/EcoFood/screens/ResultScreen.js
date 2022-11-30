@@ -31,16 +31,15 @@ export default function ResultScreen(props) {
                     // setData(data);
                     var c = [];
                     for (let i = 0; i < data[0].length; i++) {
-                        c.push("test"
-                                // (
-                                //     // <ResultsCard
-                                //     //     key={i}
-                                //     //     name={data[0][i]}
-                                //     //     score={data[1][i]}
+                        c.push(
+                            "test"
+                            // (
+                            //     // <ResultsCard
+                            //     //     key={i}
+                            //     //     name={data[0][i]}
+                            //     //     score={data[1][i]}
 
-                                // )
-
-
+                            // )
                         );
                     }
                 });
