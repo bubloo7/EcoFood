@@ -84,9 +84,7 @@ def modify_list(my_list):
     split_words_list = " ".join(my_list).split()
     for i in range(len(split_words_list)):
         if split_words_list[i].islower():
-            split_words_list.append(split_words_list[i].capitalize())
-            split_words_list.pop(i)
-        
+            split_words_list[i] = split_words_list[i].capitalize()        
         
         split_words_list.append("Poultry Meat") if split_words_list[i] == "Chicken" else None
         #add "others"
