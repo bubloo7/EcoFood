@@ -77,7 +77,6 @@ export default function EntryScreen(props) {
                     style={styles.input}
                     onChangeText={(text) => { 
                         setInput(text.split(","))
-                        console.log("changing input")
                     }}
                     onSubmitEditing={() => {
                         // props.navigation.navigate("ResultScreen", { data: input })

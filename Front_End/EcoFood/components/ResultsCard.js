@@ -6,7 +6,7 @@ export default function ResultsCard(props) {
         <View styles={styles.card}>
             <Text style={styles.title}>{props.name}</Text>
             <Text style={styles.labelTitle}>land use</Text>
-            <Text style={styles.content}>{props.land + " m^2 of forest per kg of"}</Text>
+            <Text style={styles.content}>{props.land + " m^2 of forest per kg"}</Text>
             <Text style={styles.labelTitle}>carbon emission</Text>
             <Text style={styles.content}>{props.co2 + " kilograms of CO2 per kg"}</Text>
             <Text style={styles.labelTitle}>water use</Text>

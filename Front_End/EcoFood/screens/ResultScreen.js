@@ -13,7 +13,7 @@ export default function ResultScreen(props) {
     // console.log(!!props.route.params.data);
     // console.log(props.route.params.data2);
 
-    const url = "";
+    const url = "http://ec2-34-220-118-105.us-west-2.compute.amazonaws.com.:8181/";
     const [data, setData] = useState([]);
     const [card, setCards] = useState([]);
     const renderItem = ({ item }) => (
@@ -21,103 +21,110 @@ export default function ResultScreen(props) {
             <ResultsCard name={item["name"]} land={item["land"]} co2={item["CO2"]} water={item["water"]} />
         </View>
     );
+
     useEffect(() => {
         if (props.route.params.data) {
             console.log("pre promise");
-            // fetch(url, {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify({ dataUrl: props.route.params.data.base64 }),
-            // })
-            //     .then((response) => {
-            //         return response.json();
-            //     })
-            new Promise((r) => setTimeout(r, 1000)).then((idk) => {
-                // change idk to dataA
-                const dataA = {
-                    stats: [
-                        {
-                            name: "banana",
-                            land: 3,
-                            CO2: 13,
-                            water: 10,
-                        },
-                        {
-                            name: "apple",
-                            land: 4,
-                            CO2: 14,
-                            water: 11,
-                        },
-                        {
-                            name: "orange",
-                            land: 5,
-                            CO2: 15,
-                            water: 12,
-                        },
-                        {
-                            name: "grape",
-                            land: 6,
-                            CO2: 16,
-                            water: 13,
-                        },
-                        {
-                            name: "pear",
-                            land: 7,
-                            CO2: 17,
-                            water: 14,
-                        },
-                        {
-                            name: "pineapple",
-                            land: 8,
-                            CO2: 18,
-                            water: 15,
-                        },
-                        {
-                            name: "strawberry",
-                            land: 9,
-                            CO2: 19,
-                            water: 16,
-                        },
-                        {
-                            name: "blueberry",
-                            land: 10,
-                            CO2: 20,
-                            water: 17,
-                        },
-                    ],
-                };
-                // console.log(data);
-                var c = [];
-                for (let i = 0; i < dataA["stats"].length; i++) {
-                    c.push(
-                        <View>
-                            <ResultsCard
-                                name={dataA["stats"][i]["name"]}
-                                land={dataA["stats"][i]["land"]}
-                                co2={dataA["stats"][i]["CO2"]}
-                                water={dataA["stats"][i]["water"]}
-                            />
-                        </View>
-                    );
-                }
-                setCards(c);
-                setData(dataA["stats"]);
-                console.log("post promise");
-            });
+            fetch(url + "api", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ dataUrl: "data:image/jpeg;base64," + props.route.params.data.base64 }),
+            })
+                .then((response) => {
+                    console.log(response.ok, response.status, response.statusText);
+                    console.log("post promise");
+                    return response.json();
+                })
+                // new Promise((r) => setTimeout(r, 1000))
+                .then((dataA) => {
+                    // change idk to dataA
+                    // const dataA = {
+                    //     stats: [
+                    //         {
+                    //             name: "banana",
+                    //             land: 3,
+                    //             CO2: 13,
+                    //             water: 10,
+                    //         },
+                    //         {
+                    //             name: "apple",
+                    //             land: 4,
+                    //             CO2: 14,
+                    //             water: 11,
+                    //         },
+                    //         {
+                    //             name: "orange",
+                    //             land: 5,
+                    //             CO2: 15,
+                    //             water: 12,
+                    //         },
+                    //         {
+                    //             name: "grape",
+                    //             land: 6,
+                    //             CO2: 16,
+                    //             water: 13,
+                    //         },
+                    //         {
+                    //             name: "pear",
+                    //             land: 7,
+                    //             CO2: 17,
+                    //             water: 14,
+                    //         },
+                    //         {
+                    //             name: "pineapple",
+                    //             land: 8,
+                    //             CO2: 18,
+                    //             water: 15,
+                    //         },
+                    //         {
+                    //             name: "strawberry",
+                    //             land: 9,
+                    //             CO2: 19,
+                    //             water: 16,
+                    //         },
+                    //         {
+                    //             name: "blueberry",
+                    //             land: 10,
+                    //             CO2: 20,
+                    //             water: 17,
+                    //         },
+                    //     ],
+                    // };
+                    // console.log(data);
+                    console.log(dataA, "data thingy");
+                    var c = [];
+                    for (let i = 0; i < dataA["stats"].length; i++) {
+                        c.push(
+                            <View>
+                                <ResultsCard
+                                    name={dataA["stats"][i]["name"]}
+                                    land={dataA["stats"][i]["land"]}
+                                    co2={dataA["stats"][i]["CO2"]}
+                                    water={dataA["stats"][i]["water"]}
+                                />
+                            </View>
+                        );
+                    }
+                    setCards(c);
+                    setData(dataA["stats"]);
+                    console.log("post promise");
+                });
         } else {
-            fetch(url, {
+            console.log("in list thing pre fetch");
+            fetch(url + "list", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ dataUrl: props.route.params.data2 }),
             })
                 .then((response) => {
+                    console.log(response.ok, response.status, response.statusText);
                     return response.json();
                 })
-                .then((data) => {
-                    console.log(data);
+                .then((dataA) => {
+                    console.log("dataA", dataA);
                     // setData(data);
                     var c = [];
-                    for (let i = 0; i < data["stats"].length; i++) {
+                    for (let i = 0; i < dataA["stats"].length; i++) {
                         c.push(
                             <ResultsCard
                                 name={dataA["stats"][i]["name"]}
@@ -128,6 +135,7 @@ export default function ResultScreen(props) {
                         );
                     }
                     setCards(c);
+                    setData(dataA["stats"]);
                 });
         }
     }, []);
@@ -166,8 +174,6 @@ export default function ResultScreen(props) {
                                 textAlign: "center",
                                 color: "#544B3d",
                                 fontFamily: "Quicksand_700Bold",
-                                
-                                
                             }}
                         >
                             ECOFOOD
@@ -177,7 +183,6 @@ export default function ResultScreen(props) {
             </View>
 
             <FlatList data={data} renderItem={renderItem} keyExtractor={(item) => item.name} />
-       
         </View>
     );
     // return <Temp />;
