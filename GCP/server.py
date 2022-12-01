@@ -22,21 +22,36 @@ def api():
         f.write(response.file.read())
     image = "_server.jpg"
     output = backend.image_to_list(image)
+
+    newList = []
+    for food in output:
+        newList.append(food.capitalize())
+        newList.append(food.title())
+        newList.append(food)
+
+    output = backend.create_list_matching_database_with_possible_items(newList)
+
     clean_output = []
     [clean_output.append(x) for x in output if x not in clean_output]
 
-    output = backend.create_list_matching_database_with_possible_items(clean_output)
-
-    return {"stats": output}
+    return {"stats": clean_output}
 
 @app.route('/list', methods=['POST'])
 def list():
     data = request.json["dataUrl"]
-    clean_output = []
-    [clean_output.append(x) for x in data if x not in clean_output]
-    output = backend.create_list_matching_database_with_possible_items(clean_output)
 
-    return {"stats": output}
+    newList = []
+    for food in data:
+        newList.append(food.capitalize())
+        newList.append(food.title())
+        newList.append(food)
+
+    output = backend.create_list_matching_database_with_possible_items(newList)
+
+    clean_output = []
+    [clean_output.append(x) for x in output if x not in clean_output]
+
+    return {"stats": clean_output}
 
 
 @app.route('/json')
@@ -67,4 +82,4 @@ def lists():
 
 
 
-serve(app, host='0.0.0.0', port=81)
+serve(app, host='0.0.0.0', port=8181)
