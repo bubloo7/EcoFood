@@ -21,15 +21,20 @@ def api():
     with open('_server.jpg', 'wb') as f:
         f.write(response.file.read())
     image = "_server.jpg"
-    #image = "potato1.jpg"
-    output = backend.create_list_matching_database_with_possible_items(backend.image_to_list(image))
+    output = backend.image_to_list(image)
+    clean_output = []
+    [clean_output.append(x) for x in output if x not in clean_output]
+
+    output = backend.create_list_matching_database_with_possible_items(clean_output)
 
     return {"stats": output}
 
 @app.route('/list', methods=['POST'])
 def list():
     data = request.json["dataUrl"]
-    output = backend.create_list_matching_database_with_possible_items(data)
+    clean_output = []
+    [clean_output.append(x) for x in data if x not in clean_output]
+    output = backend.create_list_matching_database_with_possible_items(clean_output)
 
     return {"stats": output}
 
